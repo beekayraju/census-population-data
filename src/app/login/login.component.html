@@ -1,0 +1,34 @@
+<div id="wrapper">
+		<div class="vertical-align-wrap">
+			<div class="vertical-align-middle">
+				<div class="auth-box ">
+					<div class="left">
+						<div class="content">
+							<div class="header">
+								<div class="logo text-center"><img src="assets/img/inmar-logo-color-web.svg" alt="Inmar" class="img-responsive"></div>
+								<p class="lead">Login to your account</p>
+							</div>
+							<p *ngIf="errorMessage.length > 0" class="text-danger">
+								{{errorMessage}}</p>
+
+							<p *ngIf="error.message.length > 0" class="text-danger">
+								{{error.message}}</p>
+							<form name="userform" method="post" #formCtrl="ngForm" (ngSubmit)="onLoginEmail()">
+								<div class="form-group">
+									<label for="exampleInputEmail1">Email address</label>
+										<input type="email" class="form-control" [(ngModel)]="email" id="email" name="email" placeholder="Email" required>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">Password</label>
+									<input type="password" class="form-control" [(ngModel)]="password" id="password" name="password" placeholder="Password" required>
+								</div>
+                                <button type="buton" class="btn btn-primary btn-block btn-yellow" style="margin-bottom: 20px" (click)="signInWithEmail()" [disabled]="formCtrl.form.invalid">
+									Login
+									</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

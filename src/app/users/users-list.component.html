@@ -1,0 +1,64 @@
+<div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="breadcrumb"><a routerLink="../dashboard">HOME</a> › USERS</div>
+            </div>
+        <div class="row">
+        <div class="col-md-12">
+          <!-- OVERVIEW -->
+          <div class="panel panel-headline">
+            <div class="panel-heading">
+              <h3 class="panel-title">Users List</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="panel-body no-padding table-responsive dashboard-table">
+                        <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td><strong>Email</strong></td>
+                                <td><strong>Phone</strong></td>
+                                <td><strong>Edit</strong></td>
+                                <td><strong>Delete</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items | async">
+                                <td>{{item.name}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.phone}}</td>
+                                <td>
+                                    <div class="btn-group text-center">
+                                        <a [routerLink]="['../edit-user/'+item.$key]" class="btn btn-primary btn-sm">Edit</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-group text-center">
+                                        <button type="button" class="btn btn-danger btn-sm" (click)="remove(item)">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="text-left">
+                        <a routerLink="../add-user" class="btn btn-lg btn-yellow">Add User</a>
+                    </div>
+                    <!--<h2>Add User</h2>
+                    <input [(ngModel)]="name" />
+                     <input [(ngModel)]="email" />
+                    <button (click)="add()">Add</button>-->
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+      </div>
+    
+
+

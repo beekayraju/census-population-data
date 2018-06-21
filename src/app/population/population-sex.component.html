@@ -1,0 +1,165 @@
+<h4>Population by Sex</h4>
+<form class="form-inline">
+   <!--Radio group-->
+    <div class="form-check radio-green">
+        <input class="form-check-input" name="gender" type="radio" id="radio108" value="BothSexes" (click)="setradio('BothSexes')" [checked]='true' ngModel>
+        <label class="form-check-label" for="radio108">Both Sexes</label>
+    </div>
+
+    <div class="form-check radio-green">
+        <input class="form-check-input" name="gender" type="radio" id="radio109" value="Male" (click)="setradio('Male')" ngModel>
+        <label class="form-check-label" for="radio109">Male</label>
+    </div>
+
+    <div class="form-check radio-green">
+        <input class="form-check-input" name="gender" type="radio" id="radio1010" value="Female" (click)="setradio('Female')" ngModel>
+        <label class="form-check-label" for="radio1010">Female</label>
+    </div>
+
+    <!--Radio group-->
+</form>
+
+ 
+
+<div *ngIf="isSelected('BothSexes')" > 
+    <div class="form-group search-form">
+        <label class="col-sm-2" for="searchlabel">Search</label>
+        <input type="text" class="form-control col-sm-4" id="searchlabel"  name="search" [(ngModel)]="filter">
+    </div> 
+    <div class="panel-body no-padding table-responsive dashboard-table">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th (click)="sort('sex')">Country
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='sex'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('Population')">Population
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='Population'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('PopulationMOE')">Population MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='PopulationMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('Uninsured')">Uninsured
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='Uninsured'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredMOE')">Uninsured MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredPct')">Uninsured Pct
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredPct'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredPctMOE')">Uninsured Pct MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredPctMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let d of data | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                <td>{{d.County}}</td>
+                <td>{{d.Male + d.Female}}</td>
+                <td>{{d.MaleMOE + d.FeMaleMOE}}</td>
+                <td>{{d.MaleUninsured + d.FeMaleUninsured}}</td>
+                <td>{{d.MaleUninsuredMOE + d.FeMaleUninsuredMOE}}</td>
+                <td>{{d.MaleUninsuredPct + d.FeMaleUninsuredPct | number:'2.1-2'}}%</td>
+                <td>{{d.MaleUninsuredPctMOE + d.FeMaleUninsuredPctMOE | number:'2.1-2'}}%</td>
+            </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>  
+</div>  
+
+<div *ngIf="isSelected('Male')">  
+    <div class="form-group search-form">
+        <label class="col-sm-2" for="searchlabel">Search</label>
+        <input type="text" class="form-control col-sm-4" id="searchlabel"  name="search" [(ngModel)]="filter">
+    </div>
+    <div class="panel-body no-padding table-responsive dashboard-table">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th (click)="sort('sex')">Country
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='sex'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('Population')">Population
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='Population'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('PopulationMOE')">Population MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='PopulationMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('Uninsured')">Uninsured
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='Uninsured'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredMOE')">Uninsured MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredPct')">Uninsured Pct
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredPct'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredPctMOE')">Uninsured Pct MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredPctMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let d of data | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                <td>{{d.County}}</td>
+                <td>{{d.Male}}</td>
+                <td>{{d.MaleMOE}}</td>
+                <td>{{d.MaleUninsured}}</td>
+                <td>{{d.MaleUninsuredMOE}}</td>
+                <td>{{d.MaleUninsuredPct}}%</td>
+                <td>{{d.MaleUninsuredPctMOE}}%</td>
+            </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div> 
+</div> 
+<div *ngIf="isSelected('Female')"> 
+    <div class="form-group search-form">
+        <label class="col-sm-2" for="searchlabel">Search</label>
+        <input type="text" class="form-control col-sm-4" id="searchlabel"  name="search" [(ngModel)]="filter">
+    </div> 
+   <div class="panel-body no-padding table-responsive dashboard-table">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th (click)="sort('sex')">Country
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='sex'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('Population')">Population
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='Population'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('PopulationMOE')">Population MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='PopulationMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('Uninsured')">Uninsured
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='Uninsured'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredMOE')">Uninsured MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredPct')">Uninsured Pct
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredPct'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                <th (click)="sort('UninsuredPctMOE')">Uninsured Pct MOE
+                    <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredPctMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+                </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let d of data | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                <td>{{d.County}}</td>
+                <td>{{d.Female}}</td>
+                <td>{{d.FeMaleMOE}}</td>
+                <td>{{d.FeMaleUninsured}}</td>
+                <td>{{d.FeMaleUninsuredMOE}}</td>
+                <td>{{d.FeMaleUninsuredPct}}%</td>
+                <td>{{d.FeMaleUninsuredPctMOE}}%</td>
+            </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div> 
+</div>

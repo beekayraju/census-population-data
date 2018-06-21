@@ -1,0 +1,58 @@
+<div class="main-content">
+        <div class="container-fluid">
+          <div class="row">
+              <div class="breadcrumb"><a routerLink="/dashboard">HOME</a> › DASHBOARD</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+          <!-- OVERVIEW -->
+          <div class="panel panel-headline">
+            <div class="panel-heading">
+              <h3 class="panel-title">Population Census</h3>
+              <p class="panel-subtitle">2009 - 2014</p>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-9">
+                  <div id="headline-chart" class="ct-chart">
+                      <img src="assets/img/graph-img.png" alt="Inmar" class="img-responsive logo">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="population-summary text-right">
+                    <span class="number">{{populationCount}}</span>
+                    <span class="info-label">Population</span>
+                  </div>
+                  <div class="population-summary text-right">
+                    <span class="number">{{populationUninsuredCount}}</span> 
+                    <span class="info-label">Uninsured</span>
+                  </div>
+                  <div class="population-summary text-right">
+                    <span class="number">{{populationMoeCount}}</span>
+                    <span class="info-label">Population MOE</span>
+                  </div>
+                  <div class="population-summary text-right">
+                    <span class="number">{{populationUninsuredMoeCount}}</span>
+                    <span class="info-label">Uninsured MOE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END OVERVIEW -->
+          <div class="row">
+            <div class="col-md-6">
+              <!-- POPULATION BY COUNTRY -->
+              <population-by-country></population-by-country>
+              <!-- END POPULATION BY COUNTRY -->
+            </div>
+            <div class="col-md-6">
+              <!-- POPULATION BY AGE -->
+              <population-by-age></population-by-age>
+              <!-- END POPULATION BY AGE -->
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>

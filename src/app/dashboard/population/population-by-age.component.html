@@ -1,0 +1,42 @@
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Population by Age (0-64 years)</h3>
+    </div>
+    <div class="panel-body no-padding table-responsive dashboard-table">
+        <table class="table table-striped">
+        <thead>
+            <tr>
+            <th (click)="sort('name')">Country
+                <span class="glyphicon sort-icon fa" *ngIf="key =='name'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('Population')">Population
+                <span class="glyphicon sort-icon fa" *ngIf="key =='Population'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('PopulationMOE')">Population MOE
+                <span class="glyphicon sort-icon fa" *ngIf="key =='PopulationMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('Uninsured')">Uninsured
+                <span class="glyphicon sort-icon fa" *ngIf="key =='Uninsured'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+            </th>
+            <th (click)="sort('UninsuredMOE')">Uninsured MOE
+                <span class="glyphicon sort-icon fa" *ngIf="key =='UninsuredMOE'" [ngClass]="{'fa-caret-up':reverse,'fa-caret-down':!reverse}"></span>
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of data | orderBy: key : reverse | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                    <td *ngIf="i<10">{{d.County}}</td>
+                    <td *ngIf="i<10">{{d.PopulationUnder18years + d.Population18to64years + d.Population19to25years}}</td>
+                    <td *ngIf="i<10">{{d.PopulationUnder18yearsMOE + d.Population18to64yearsMOE + d.Population19to25yearsMOE}}</td>
+                    <td *ngIf="i<10">{{d.PopulationUnder18yearsUninsured + d.Population18to64yearsUninsured + d.Population19to25yearsUninsured}}</td>
+                    <td *ngIf="i<10">{{d.PopulationUnder18yearsUninsuredMOE + d.Population18to64yearsUninsuredMOE + d.Population19to25yearsUninsuredMOE}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+        <div class="col-md-12 text-right"><a routerLink="../population-data" class="btn btn-primary btn-sm">View All</a></div>
+        </div>
+    </div>
+    </div>
